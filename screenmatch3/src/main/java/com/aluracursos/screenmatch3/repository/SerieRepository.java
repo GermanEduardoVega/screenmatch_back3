@@ -11,11 +11,13 @@ import java.util.List;
 import java.util.Optional;
 
 public interface SerieRepository extends JpaRepository<Serie,Long> {
+    //Query Methods
+    @Query("SELECT s FROM Serie s WHERE LOWER(s.titulo) LIKE LOWER(concat('%', :nombreSerie, '%'))")                        //
     Optional<Serie> findByTituloContainsIgnoreCase(String nombreSerie);
 
-
+    @Query("SELECT s FROM Serie s ORDER BY s.evaluacion DESC LIMIT 5")
     List<Serie> findTop5ByOrderByEvaluacionDesc();
-
+    @Query("SELECT s FROM Serie s WHERE s.genero = :categoria")
     List<Serie> findByGenero(Categoria categoria);
 
     //List<Serie> findByTotalTemporadasLessThanEqualAndEvaluacionGreaterThanEqual(int totalTemporadas, Double evaluacion);

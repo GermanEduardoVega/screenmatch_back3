@@ -2,6 +2,7 @@ package com.aluracursos.screenmatch3.service;
 
 import com.aluracursos.screenmatch3.dto.EpisodioDTO;
 import com.aluracursos.screenmatch3.dto.SerieDTO;
+import com.aluracursos.screenmatch3.model.Categoria;
 import com.aluracursos.screenmatch3.model.Serie;
 import com.aluracursos.screenmatch3.repository.SerieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,6 +68,12 @@ public class SerieService {
                 .collect(Collectors.toList());
     }
 
+
+    public List<SerieDTO> obtenerSeriesPorCategorias(String nombreGenero) {
+        Categoria categoria = Categoria.fromEspaniol(nombreGenero);
+        return convierteDatos(repository.findByGenero(categoria));
+    }
+
     public List<SerieDTO> convierteDatos(List<Serie> series){            //transformacion de mi Serie a SerieDTO
         return series.stream()
                     .map(serie -> new SerieDTO(
@@ -80,6 +87,7 @@ public class SerieService {
                             ,serie.getSinopsis()))
                     .collect(Collectors.toList());                      //cada vez que yo pase una serie va a haber una cnversion de datos
         }                                                               //para convertir eso una lista pero de tipo de datos SerieDTO
+
 
 }
 
