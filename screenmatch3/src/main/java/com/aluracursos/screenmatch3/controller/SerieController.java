@@ -25,4 +25,10 @@ public class SerieController {
     public String muestraMensaje(){
         return "Probando LiveReloading";
     }
+
+    @GetMapping("/series/top5")
+    public List<SerieDTO> obtenerTop5(){
+        return servicio.obtenerTop5();
+
+    }
 }
