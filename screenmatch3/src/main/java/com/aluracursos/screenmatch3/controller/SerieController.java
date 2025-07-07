@@ -24,7 +24,10 @@ public class SerieController {
                                             ,serie.getActores()
                                             ,serie.getSinopsis()))
                 .collect(Collectors.toList());      //para convertir eso una lista pero de tipo de datos SerieDTO
+    }
 
-
+    @GetMapping("/inicio")
+    public String muestraMensaje(){
+        return "Probando LiveReloading";
     }
 }
