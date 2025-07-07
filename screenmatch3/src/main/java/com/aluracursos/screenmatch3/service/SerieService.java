@@ -59,6 +59,14 @@ public class SerieService {
         return null;
     }
 
+    public List<EpisodioDTO> obtenerTemporadasPorNumero(Long id, Long numeroTemporada) {
+        return repository.obtenerTemporadasPorNumero(id,numeroTemporada).stream()
+                .map(episodio -> new EpisodioDTO(episodio.getTemporada()
+                                                ,episodio.getTitulo()
+                                                ,episodio.getNumeroEpisodio()))
+                .collect(Collectors.toList());
+    }
+
     public List<SerieDTO> convierteDatos(List<Serie> series){            //transformacion de mi Serie a SerieDTO
         return series.stream()
                     .map(serie -> new SerieDTO(
@@ -72,8 +80,6 @@ public class SerieService {
                             ,serie.getSinopsis()))
                     .collect(Collectors.toList());                      //cada vez que yo pase una serie va a haber una cnversion de datos
         }                                                               //para convertir eso una lista pero de tipo de datos SerieDTO
-
-
 
 }
 
