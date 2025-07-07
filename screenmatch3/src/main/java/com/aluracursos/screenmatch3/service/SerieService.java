@@ -22,9 +22,15 @@ public class SerieService {
 
     }
 
+
+    public List<SerieDTO> obtenerLanzamientosMasRecientes(){
+        return convierteDatos(repository.lanzamientosMasRecientes());
+    }
+
     public List<SerieDTO> convierteDatos(List<Serie> series){            //transformacion de mi Serie a SerieDTO
         return series.stream()
-                    .map(serie -> new SerieDTO(serie.getTitulo()
+                    .map(serie -> new SerieDTO(
+                             serie.getTitulo()
                             ,serie.getTotalDeTemporadas()
                             ,serie.getEvaluacion()
                             ,serie.getPoster()
@@ -33,4 +39,8 @@ public class SerieService {
                             ,serie.getSinopsis()))
                     .collect(Collectors.toList());                      //cada vez que yo pase una serie va a haber una cnversion de datos
         }                                                               //para convertir eso una lista pero de tipo de datos SerieDTO
-}   
+
+
+
+}
+
