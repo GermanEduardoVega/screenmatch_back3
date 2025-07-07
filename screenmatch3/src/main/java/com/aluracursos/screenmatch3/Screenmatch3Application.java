@@ -13,6 +13,7 @@ public class Screenmatch3Application {
 
 	public static void main(String[] args) {
 		SpringApplication.run(Screenmatch3Application.class, args);
+		System.out.println("Estoy funcionando..");
 	}
 }
 
